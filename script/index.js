@@ -41,84 +41,77 @@ class Fighter {
 
   //this logs who attacked who
   attack(target) {
-    this.hp = (this.hp - target.atk)
-    console.log(target.name + " attacked " + this.name + " for " + target.atk + " damage!")
-    console.log(this.name + " has " + this.hp + " health remaining!")
+      function koCheck() {
+        if (this.hp <= 0) {
+          console.log(this.name + ' attacked ' + target.name + ' for ' + this.atk + ' damage!');
+          console.log('' + this.name + ' has been KO\'d');
+          // graphicsBox.innerHTML += '<img id ="' + target.charaName + '" src="img/' + target.charaName + '_hit.png" alt="' + target.name + '" class="fighterIMG">'
+        } else {
+          console.log(this.name + ' attacked ' + target.name);
+          console.log(this.name + ' attacked ' + target.name + ' for ' + this.atk + 'damage!');
+          // graphicsBox.innerHTML = '<img id ="' + this.charaName + '" src="img/' + this.charaName + '_hit.png" alt="' + this.name + '" class="fighterIMG">'
+        }
+      }
+    }
+
+    single(target) {
+      this.attack(target);
+    }
+
+    double(target) {
+      this.attack(target);
+      this.attack(target);
+    }
+
+    //this logs that they recovered
+    recover() {
+      console.log('Recovered!');
+    }
+  }
+
+
+  function startup() {
+    Player0 = new Fighter(P0NAME, P0CHARA);
+    Player1 = new Fighter(P1NAME, P1CHARA);
+
+    //this makes a shortcut for 'document.getElementById'
+    gameBox = document.getElementById('gameBox');
+    headerBox = document.getElementById('headerBox');
+    graphicsBox = document.getElementById('graphicsBox');
+    barsBox = document.getElementById('barsBox');
+    controlsBox = document.getElementById('controlsBox');
+    outputBox = document.getElementById('outputBox');
+
+    //this shows the fighter images in the graphics box
+    graphicsBox.innerHTML = '<img id ="' + Player0.charaName + '" src="img/' + Player0.charaName + '_idle.png" alt="' + Player0.name + '" class="fighterIMG">'
+    graphicsBox.innerHTML += '<img id ="' + Player1.charaName + '" src="img/' + Player1.charaName + '_idle.png" alt="' + Player1.name + '" class="fighterIMG">'
+
+
+    console.log("My name is " + Player0.name + " and my ATK is " + Player0.atk)
+    console.log("My name is " + Player1.name + " and my ATK is " + Player1.atk)
+
+    showControls() //runs the showControls() function
 
   }
 
-  single(target) {
-    this.attack(target);
+  function showControls() {
+    //checks to see which players turn it is and show the apropriate controls
+    if (playerTurn) {
+      //show buttons for player1 and overwrites player0's controls
+      controlsBox.innerHTML = '<button type="button" name="attack" onclick="Player1.single(Player0)">Single Attack!</button>'
+    } else {
+      //show buttons for player0 and overwrites player1's controls
+      controlsBox.innerHTML = '<button type="button" name="attack" onclick="Player0.single(Player1)">Single Attack!</button>'
+    }
   }
 
-  double(target) {
-    this.attack(target);
-    this.attack(target);
-  }
-
-  //this logs that they recovered
-  recover() {
-    console.log('Recovered!');
-  }
-}
-
-function startup() {
-  Player0 = new Fighter(P0NAME, P0CHARA);
-  Player1 = new Fighter(P1NAME, P1CHARA);
-
-  //this makes a shortcut for 'document.getElementById'
-  gameBox = document.getElementById('gameBox');
-  headerBox = document.getElementById('headerBox');
-  graphicsBox = document.getElementById('graphicsBox');
-  barsBox = document.getElementById('barsBox');
-  controlsBox = document.getElementById('controlsBox');
-  outputBox = document.getElementById('outputBox');
 
 
-  //this shows the fighter images in the graphics box
-  graphicsBox.innerHTML = '<img id ="' + Player0.charaName + '" src="img/' + Player0.charaName + '_idle.png" alt="' + Player0.name + '" class="fighterIMG">'
-  graphicsBox.innerHTML += '<img id ="' + Player1.charaName + '" src="img/' + Player1.charaName + '_idle.png" alt="' + Player1.name + '" class="fighterIMG">'
 
+  /*
 
-  attackP1() //runs the attack() function
-}
+  MHW = 'delicious'
 
-function showControls() {
-  //checks to see which players turn it is and show the apropriate controls
-  if (playerTurn) {
-    //show buttons for player1 and overwrites player0's controls
-    controlsBox.innerHTML = '<button type="button" name="attack" onclick="Player1.single(Player0)">Single Attack!</button>'
-  } else {
-    //show buttons for player0 and overwrites player1's controls
-    controlsBox.innerHTML = '<button type="button" name="attack" onclick="Player0.single(Player1)">Single Attack!</button>'
-  }
-}
+  MHWoutput > MHWinput
 
-  console.log("My name is " + Player0.name + " and my ATK is " + Player0.atk)
-  console.log("My name is " + Player1.name + " and my ATK is " + Player1.atk)
-
-
-  showControls() //runs the showControls() function
-
-}
-
-function showControls() {
-  //checks to see which players turn it is and show the apropriate controls
-  if (playerTurn) {
-    //show buttons for player1 and overwrites player0's controls
-    controlsBox.innerHTML = '<button type="button" name="attack" onclick="Player1.single(Player0)">Single Attack!</button>'
-  } else {
-    //show buttons for player0 and overwrites player1's controls
-    controlsBox.innerHTML = '<button type="button" name="attack" onclick="Player0.single(Player1)">Single Attacks!</button>'
-  }
-
-}
-
-
-/*
-
-MHW = 'delicious'
-
-MHWoutput > MHWinput
-
-*/
+  */
