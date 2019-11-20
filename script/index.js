@@ -45,7 +45,7 @@ class Fighter {
     this.tek = DEFAULT_TEK;
     this.charaName = charaName;
     //used for finding the damage that will be dealt
-    this.damage =this.atk * Math.random(2);
+    this.damage = this.atk * Math.random(2);
 
   }
 
