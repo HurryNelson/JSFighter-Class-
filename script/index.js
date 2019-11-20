@@ -10,12 +10,11 @@ const P0CHARA = 'crashr'
 const P1NAME = 'Sam'
 const P1CHARA = 'saml'
 
-let playerTurn = true;
+let playerTurn = false;
 let logging = true;
 
 let Player0;
 let Player1;
-
 
 //varible for finding % of players HP used for the HealthBar
 let player0PercentHP;
