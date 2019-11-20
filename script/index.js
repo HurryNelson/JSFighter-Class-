@@ -16,6 +16,7 @@ let logging = true;
 let Player0;
 let Player1;
 
+
 //varible for finding % of players HP used for the HealthBar
 let player0PercentHP;
 let player1PercentHP;
@@ -39,25 +40,19 @@ class Fighter {
     this.name = name;
     this.hp = START_HP;
     this.sp = START_SP;
-    this.atk = DEFAULT_ATK
+    this.atk = DEFAULT_ATK;
     this.def = DEFAULT_DEF;
     this.tek = DEFAULT_TEK;
     this.charaName = charaName;
+    //used for finding the damage that will be dealt
+    this.damage =this.atk * Math.random(2);
+
   }
 
   //this logs who attacked who
   attack(target) {
-      function koCheck() {
-        if (this.hp <= 0) {
-          console.log(this.name + ' attacked ' + target.name + ' for ' + this.atk + ' damage!');
-          console.log('' + this.name + ' has been KO\'d');
-          // graphicsBox.innerHTML += '<img id ="' + target.charaName + '" src="img/' + target.charaName + '_hit.png" alt="' + target.name + '" class="fighterIMG">'
-        } else {
-          console.log(this.name + ' attacked ' + target.name);
-          console.log(this.name + ' attacked ' + target.name + ' for ' + this.atk + 'damage!');
-          // graphicsBox.innerHTML = '<img id ="' + this.charaName + '" src="img/' + this.charaName + '_hit.png" alt="' + this.name + '" class="fighterIMG">'
-        }
-      }
+    console.log(this.damage);
+    koCheck(target, this.damage)
     }
 
     single(target) {
@@ -99,7 +94,7 @@ class Fighter {
     showControls() //runs the showControls() function
 
   }
-}
+
 
 function startup() {
   Player0 = new Fighter(P0NAME, P0CHARA);
