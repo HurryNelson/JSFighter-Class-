@@ -43,15 +43,19 @@ class Fighter {
     this.def = DEFAULT_DEF;
     this.tek = DEFAULT_TEK;
     this.charaName = charaName;
-    //used for finding the damage that will be dealt
-    this.damage = this.atk * Math.random(2);
+
 
   }
 
   //this logs who attacked who
-  attack(target) {
-    console.log(this.damage);
+  attack(target, dmg) {
+    //used for calculating the damage that will be dealt
+    this.dmg =  Math.ceil(this.atk *(Math.random()*2));
+
+    console.log(this.dmg);
     koCheck(target, this.damage)
+
+    document.getElementsByClassName('outputBox').innerHTML += ''+ this.name +' attacked'
     }
 
     single(target) {
@@ -67,31 +71,6 @@ class Fighter {
     recover() {
       console.log('Recovered!');
     }
-  }
-
-
-  function startup() {
-    Player0 = new Fighter(P0NAME, P0CHARA);
-    Player1 = new Fighter(P1NAME, P1CHARA);
-
-    //this makes a shortcut for 'document.getElementById'
-    gameBox = document.getElementById('gameBox');
-    headerBox = document.getElementById('headerBox');
-    graphicsBox = document.getElementById('graphicsBox');
-    barsBox = document.getElementById('barsBox');
-    controlsBox = document.getElementById('controlsBox');
-    outputBox = document.getElementById('outputBox');
-
-    //this shows the fighter images in the graphics box
-    graphicsBox.innerHTML = '<img id ="' + Player0.charaName + '" src="img/' + Player0.charaName + '_idle.png" alt="' + Player0.name + '" class="fighterIMG">'
-    graphicsBox.innerHTML += '<img id ="' + Player1.charaName + '" src="img/' + Player1.charaName + '_idle.png" alt="' + Player1.name + '" class="fighterIMG">'
-
-
-    console.log("My name is " + Player0.name + " and my ATK is " + Player0.atk)
-    console.log("My name is " + Player1.name + " and my ATK is " + Player1.atk)
-
-    showControls() //runs the showControls() function
-
   }
 
 
@@ -145,8 +124,8 @@ function updateBars() {
   //calculates the percent of HP
   player0PercentHP = (Player0.hp / START_HP) * 100
   player1PercentHP = (Player1.hp / START_HP) * 100
-  player0PercentHP = (Player0.sp / START_SP) * 100
-  player1PercentHP = (Player1.sp / START_SP) * 100
+  player0PercentSP = (Player0.sp / START_SP) * 100
+  player1PercentSP = (Player1.sp / START_SP) * 100
 
   //Makes sure Player0's health is not greater than 100% or less than 0%
   if (player0PercentHP <= 0) {
